@@ -26,6 +26,9 @@ export const useHoverStores = defineStore("hover", {
       if (unhoverId) {
         useComponentsStores().updateComponent(unhoverId, unhover)
       }
+      if(useClickStores().clickId) {
+        useComponentsStores().updateComponent(useClickStores().clickId, hover)
+      }
     }, 
 
     hoverComponentSide(hoverId) {

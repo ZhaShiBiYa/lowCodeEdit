@@ -9,6 +9,7 @@ export const useClickStores = defineStore("click", {
     componentName: null,
     tabStyle: { dispaly: "none" }, 
     moreStyle: { dispaly: "none" },
+    parentComponet: [],
   }), 
 
   actions: { 
@@ -49,10 +50,40 @@ export const useClickStores = defineStore("click", {
       }
 
     },
+
     // 显示更多：显示上级组件
     clickMoreFn(clickId) {
       const componentStore = useComponentsStores()
+      let parentId = componentStore.getComponentById(clickId).parentId
+      while (parentId !== 1) {
+        const parentName = componentStore.getComponentById(parentId).name
+        this.parentComponet.push({ parentName: parentName, parentId: parentId })
+        parentId = componentStore.getComponentById(parentId).parentId
+      }
+      this.moreStyle = {
+        position: "absolute", 
+        display: "flex", 
+        left: "", 
+        top: "",
+      } 
+    },
 
+    // 前移
+    clickFrontFn(clickId) {
+      const componentStore = useComponentsStores()
+
+      const curComponent = componentStore.getComponentById(clickId)
+      const parentComponet = componentStore.getComponentById(curComponent.parentId)
+      // 判断父节点存在与否
+      if (parentComponet.parentId) {
+        curComponent.parentId = parentComponet.parentId
+        componentStore.deleteComponent(clickId)
+        componentStore.addComponent(curComponent, parentComponet.parentId)
+      }
+    }, 
+    // 后移
+    clickBackFn(clickId) {
+      const componentStore = useComponentsStores()
     }
   }
 })

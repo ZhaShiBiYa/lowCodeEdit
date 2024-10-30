@@ -4,21 +4,31 @@
     @mouseleave="hoverLabelLeave"
     @click="clickStores.clickComponentById(hoverStores.hoverId)" >
     <editArea></editArea>
+    <!-- hover 显示名字 -->
     <div class="componentName"
        :style="hoverStores.sideLabelStyle"
     > 
       {{ hoverStores.labelText }}
     </div>
+    <!-- click 显示工具栏 -->
     <div class="componentTab">
       <div class="tab" :style="clickStores.tabStyle">
         <!-- tab: name -->
         {{ clickStores.componentName }}
         <p @click="">front</p>
         <p @click="">back</p>
-        <p @click="clickMoreFn">more</p>
-        <p @click="">delete</p>
+        <p @click="clickStores.clickMoreFn(clickStores.clickId)">more</p>
+        <p @click="clickStores.clickDeleteFn(clickStores.clickId)">delete</p>
+      </div>
+      <!-- 点击更多 显示上级父组件 -->
+      <div class="more" v-for="item in clickStores.parentComponet">
+        <div class="moreItem" 
+             @click="clickStores.clickComponentById(item.parentId)"> 
+          {{ item.parentName }} 
+        </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -40,5 +50,15 @@
   p {
     margin-left: 2px;
     border-left: 1px solid white;
+  }
+
+  .moreItem {
+    height: 15px;
+    width: 20px;
+    border-bottom: 1px solid black;
+
+    font-size: 13px;
+    color: black;
+    background-color: #fff;
   }
 </style>
