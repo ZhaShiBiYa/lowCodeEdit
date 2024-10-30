@@ -25,7 +25,6 @@ export const useClickStores = defineStore("click", {
           const { top: containerTop, left: containerLeft } = container.getBoundingClientRect();
 
           this.componentName = useComponentsStores().getComponentById(clickId).name
-
           this.tabStyle = {
             display: "flex", 
             position: "absolute", 
@@ -53,21 +52,34 @@ export const useClickStores = defineStore("click", {
 
     // 显示更多：显示上级组件
     clickMoreFn(clickId) {
+      console.log("more fn");
+      
       const componentStore = useComponentsStores()
+      const node = document.querySelector(`[data-id="${clickId}"]`);
+
+      const { top, left, width, height } = node.getBoundingClientRect();
       let parentId = componentStore.getComponentById(clickId).parentId
       while (parentId !== 1) {
         const parentName = componentStore.getComponentById(parentId).name
         this.parentComponet.push({ parentName: parentName, parentId: parentId })
         parentId = componentStore.getComponentById(parentId).parentId
       }
+      console.log(this.parentComponet);
+      
       this.moreStyle = {
         position: "absolute", 
         display: "flex", 
-        left: "", 
-        top: "",
+        left: `${left+20}px`, 
+        top: `${top}px`,
       } 
     },
-
+    // 删除
+    clickDeleteFn(clickId){
+      // 直接删除组件和对应组件下的子组件 clickId设置为null
+      const componentStore = useComponentsStores()
+      componentStore.deleteComponent(clickId)
+      this.clickId = null      
+    },
     // 前移
     clickFrontFn(clickId) {
       const componentStore = useComponentsStores()
@@ -84,6 +96,22 @@ export const useClickStores = defineStore("click", {
     // 后移
     clickBackFn(clickId) {
       const componentStore = useComponentsStores()
+      
+      const curComponent = componentStore.getComponentById(clickId)
+      const childrenComponents = curComponent.childrenComponents
+      const parentComponet = componentStore.getComponentById(curComponent.parentId)
+
+      if(childrenComponents) {
+        const parentId = parentComponet.id
+        // 更改子元素的父元素 指向当前组件的父元素
+        for(const component in childrenComponents) {
+          component.parentId = parentId
+        }
+        // 删除当前组件
+        componentStore.deleteComponent(clickId)
+        // 将当前组件 当前组件下子元素 父元素子元素 全部放入当前组件父元素的子元素内
+        parentComponet.childrenComponents = [curComponent, ...parentComponet.childrenComponents, ...childrenComponents]
+      }
     }
   }
 })

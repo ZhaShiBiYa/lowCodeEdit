@@ -11,9 +11,9 @@ export const useMaterialsStores = defineStore("materials", {
         props: {
           css: {
             backgroundcolor: "white",
-            width: "100px", 
-            height: "100px", 
-            boreder: "1px solid black"
+            width: "90%", 
+            height: "90%", 
+            border: "1px solid black"
           }, 
           text: "container",
         },

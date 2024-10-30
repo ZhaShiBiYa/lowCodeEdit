@@ -15,13 +15,15 @@
       <div class="tab" :style="clickStores.tabStyle">
         <!-- tab: name -->
         {{ clickStores.componentName }}
-        <p @click="">front</p>
-        <p @click="">back</p>
+        <p @click="clickStores.clickFrontFn(clickStores.clickId)">front</p>
+        <p @click="clickStores.clickBackFn(clickStores.clickId)">back</p>
         <p @click="clickStores.clickMoreFn(clickStores.clickId)">more</p>
         <p @click="clickStores.clickDeleteFn(clickStores.clickId)">delete</p>
       </div>
       <!-- 点击更多 显示上级父组件 -->
-      <div class="more" v-for="item in clickStores.parentComponet">
+      <div class="more" 
+           v-for="item in clickStores.parentComponet"
+           :style="clickStores.moreStyle">
         <div class="moreItem" 
              @click="clickStores.clickComponentById(item.parentId)"> 
           {{ item.parentName }} 
@@ -53,11 +55,11 @@
   }
 
   .moreItem {
-    height: 15px;
-    width: 20px;
+    height: 10px;
+    width: 15px;
     border-bottom: 1px solid black;
 
-    font-size: 13px;
+    font-size: 8px;
     color: black;
     background-color: #fff;
   }
