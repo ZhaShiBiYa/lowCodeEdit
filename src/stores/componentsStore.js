@@ -39,7 +39,7 @@ export const useComponentsStores = defineStore("components", {
         } 
       }
       return null
-    },  
+    }  
   },
 
   actions: {

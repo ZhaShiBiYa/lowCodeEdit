@@ -5,7 +5,7 @@ import { useComponentsStores } from "@/stores/componentsStore";
 
 export const useClickStores = defineStore("click", {
   state: () => ({
-    clickId: null,
+    clickId: 1,
     componentName: null,
     tabStyle: { dispaly: "none" }, 
     moreStyle: { dispaly: "none" },
@@ -52,8 +52,6 @@ export const useClickStores = defineStore("click", {
 
     // 显示更多：显示上级组件
     clickMoreFn(clickId) {
-      console.log("more fn");
-      
       const componentStore = useComponentsStores()
       const node = document.querySelector(`[data-id="${clickId}"]`);
 
@@ -69,7 +67,8 @@ export const useClickStores = defineStore("click", {
       this.moreStyle = {
         position: "absolute", 
         display: "flex", 
-        left: `${left+20}px`, 
+        flexDirection: "column",
+        left: `${left+80}px`, 
         top: `${top}px`,
       } 
     },
@@ -82,8 +81,8 @@ export const useClickStores = defineStore("click", {
     },
     // 前移
     clickFrontFn(clickId) {
+      console.log("front");
       const componentStore = useComponentsStores()
-
       const curComponent = componentStore.getComponentById(clickId)
       const parentComponet = componentStore.getComponentById(curComponent.parentId)
       // 判断父节点存在与否

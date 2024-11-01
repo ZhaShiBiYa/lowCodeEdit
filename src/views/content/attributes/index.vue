@@ -1,11 +1,11 @@
 <template>
   <div class="attributes">
-    <h2>attributes app</h2>
+    <attributeContent></attributeContent>
   </div>
 </template>
 
 <script setup>
-
+  import attributeContent from "@/views/content/attributes/attributeContent/index.vue"
 </script>
 
 <style lang="less" scoped>

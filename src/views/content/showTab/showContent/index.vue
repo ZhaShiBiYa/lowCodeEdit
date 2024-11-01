@@ -22,9 +22,9 @@
       </div>
       <!-- 点击更多 显示上级父组件 -->
       <div class="more" 
-           v-for="item in clickStores.parentComponet"
            :style="clickStores.moreStyle">
         <div class="moreItem" 
+             v-for="item of clickStores.parentComponet"
              @click="clickStores.clickComponentById(item.parentId)"> 
           {{ item.parentName }} 
         </div>
@@ -56,7 +56,7 @@
 
   .moreItem {
     height: 10px;
-    width: 15px;
+    width: 40px;
     border-bottom: 1px solid black;
 
     font-size: 8px;

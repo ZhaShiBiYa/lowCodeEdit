@@ -17,7 +17,7 @@ export const useHoverStores = defineStore("hover", {
         css:{"border": "1px solid blue"}
       }
       const unhover = {
-        css:{"border": "1px solid white"}
+        css:{"border": "1px solid black"}
       }
 
       if (hoverId) {
