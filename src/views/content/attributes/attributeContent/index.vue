@@ -42,8 +42,7 @@
 
   // 修改基本属性
   function attributeChageFn(name, content, id=clickStore.clickId) {
-    console.log("on change attribute");
-    componentsStore.updateComponent(id, { name: content })
+    componentsStore.changeComponent(id, name, content)
   }
 
 </script>

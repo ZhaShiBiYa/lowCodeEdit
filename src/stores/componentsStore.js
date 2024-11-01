@@ -87,6 +87,13 @@ export const useComponentsStores = defineStore("components", {
         }
       }
     }, 
+
+    changeComponent(componentId, name, content) {
+      console.log(name, content)
+      const component = this.getComponentById(componentId)
+      component[name] = content
+      console.log(component);
+    },
     
     updateCurrentComponent(newComponent) {
       this.currentNewComponent = newComponent;
