@@ -24,6 +24,11 @@ export const useMaterialsStores = defineStore("materials", {
       { 
         name: "button",
         type: "button", 
+        on: {
+          click: [
+            function yell() {},
+          ],
+        },
         props: {
           css: {
             backgroundColor: "white", 

@@ -100,6 +100,16 @@ export const useComponentsStores = defineStore("components", {
       }
       console.log(component.props.css);
     },
+
+    fnChangeComponent(componentId, name, params, fn, event) {
+      const component = this.getComponentById(componentId)
+      const curFn = component.on[event]
+      for(fn in curFn) {
+        if(fn.name === name) {
+          
+        }
+      }
+    },
     
     updateCurrentComponent(newComponent) {
       this.currentNewComponent = newComponent;
