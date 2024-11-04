@@ -4,7 +4,7 @@
       <li v-for="item in attrList">
         <p>{{ Object.keys(item)[0] }}</p>
         <input type="text" 
-               @change="attributeChageFn(Object.keys(item)[0], Object.values(item)[0])" 
+               @input="attributeChageFn(Object.keys(item)[0], $event.target.value.trim())" 
                :value.lazy.trim="Object.values(item)[0]">
       </li>
     </ul>
@@ -27,6 +27,7 @@
       { "class": componentsStore.getComponentById(1).class }, 
       { "id": componentsStore.getComponentById(1).id }
     ];
+    
     const curComponent = componentsStore.getComponentById(clickId.value);
     if (!curComponent) return [
       { "name": componentsStore.getComponentById(1).name }, 
@@ -42,7 +43,7 @@
 
   // 修改基本属性
   function attributeChageFn(name, content, id=clickStore.clickId) {
-    componentsStore.changeComponent(id, name, content)
+    componentsStore.attrchangeComponent(id, name, content)
   }
 
 </script>
@@ -50,7 +51,7 @@
 <style lang="less" scoped>
   .attribute {
     width: 100%;
-    height: 30%;
+    height: 25%;
     background-color: #fff;
 
     p {

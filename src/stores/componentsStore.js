@@ -87,12 +87,18 @@ export const useComponentsStores = defineStore("components", {
         }
       }
     }, 
-
-    changeComponent(componentId, name, content) {
-      console.log(name, content)
+    // 修改component内容 attribute
+    attrchangeComponent(componentId, name, content) {
       const component = this.getComponentById(componentId)
       component[name] = content
-      console.log(component);
+    },
+    // 修改component内容 css
+    cssChangeComponent(componentId, name, value) {
+      const component = this.getComponentById(componentId)
+      if (component.props.css) {
+        component.props.css[name] = value
+      }
+      console.log(component.props.css);
     },
     
     updateCurrentComponent(newComponent) {
