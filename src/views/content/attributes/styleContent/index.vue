@@ -51,7 +51,9 @@
 <style lang="less" scoped>
   .style {
     width: 100%;
-    height: 25%;
+    height: 30%;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-color: #fff;
 
     .addStyle {
@@ -77,6 +79,12 @@
         margin: 0px;
         font-size: 10px;
       }
+    }
+    .addStyle {
+      width: 80%;
+      height: 15px;
+
+      margin-top: 5px;
     }
   }
 </style>

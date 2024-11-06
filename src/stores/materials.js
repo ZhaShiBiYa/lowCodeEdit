@@ -44,15 +44,31 @@ export const useMaterialsStores = defineStore("materials", {
         parentId: null
       }, 
       {
-        name: "page", 
-        type: "div", 
+        name: "input", 
+        type: "input", 
         props: {
-          css: {}, 
+          css: {
+            width: "100px", 
+            height: "20px"
+          }, 
         }, 
         children: [], 
         id: null, 
         parentId: null    
       },
+      {
+        name: "radio", 
+        type: "radio", 
+        props: {
+          css: {
+            width: "100px", 
+            height: "20px"
+          },
+        },
+        children: [], 
+        id: null, 
+        parentId: null
+      }
   ]}),
 
   actions: {

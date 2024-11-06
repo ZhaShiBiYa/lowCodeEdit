@@ -90,7 +90,11 @@ export const useComponentsStores = defineStore("components", {
     // 修改component内容 attribute
     attrchangeComponent(componentId, name, content) {
       const component = this.getComponentById(componentId)
-      component[name] = content
+      if(name !== "text") {
+        component[name] = content
+      } else {
+        component.props.text = content
+      }
     },
     // 修改component内容 css
     cssChangeComponent(componentId, name, value) {

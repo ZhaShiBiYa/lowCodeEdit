@@ -1,7 +1,7 @@
 <template>
   <div class="codeContent">
     <pre>
-      {{ components }}
+      {{ componentsStore.components[0] }}
     </pre>
   </div>
 </template>
@@ -9,7 +9,7 @@
 <script setup>
   import { useComponentsStores } from '@/stores/componentsStore';
 
-  const { components }  = useComponentsStores()
+  const componentsStore = useComponentsStores()
 
 </script>
 
@@ -17,6 +17,8 @@
   .codeContent {
     width: 150px;
     height: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
     background-color: #fff;
     pre {
       margin: 0;

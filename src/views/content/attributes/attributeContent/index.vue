@@ -20,24 +20,27 @@
   const componentsStore = useComponentsStores()
   const clickStore = useClickStores()  
   const { clickId } = storeToRefs(clickStore)
-    
+  
   const attrList = computed(() => {
     if (!clickId.value) return [
       { "name": componentsStore.getComponentById(1).name }, 
       { "class": componentsStore.getComponentById(1).class }, 
-      { "id": componentsStore.getComponentById(1).id }
+      { "id": componentsStore.getComponentById(1).id }, 
+      { "text": componentsStore.getComponentById(1).props.text }
     ];
     
     const curComponent = componentsStore.getComponentById(clickId.value);
     if (!curComponent) return [
       { "name": componentsStore.getComponentById(1).name }, 
       { "class": componentsStore.getComponentById(1).class }, 
-      { "id": componentsStore.getComponentById(1).id }
+      { "id": componentsStore.getComponentById(1).id }, 
+      { "text": componentsStore.getComponentById(1).props.text }
     ];
     return [
       { "name": curComponent.name }, 
       { "class": curComponent.class }, 
-      { "id": curComponent.id }
+      { "id": curComponent.id },
+      { "text": curComponent.props.text }
     ];
   });
 
@@ -51,22 +54,26 @@
 <style lang="less" scoped>
   .attribute {
     width: 100%;
-    height: 25%;
+    height: 20%;
     background-color: #fff;
 
-    p {
-      width: 35px;
-      margin: 0px;
-      font-size: 10px;
-    }
-
-    input {
-      height: 13px;
-      width: 90px;
-      padding: 0px;
-      margin: 0px;
-
-      font-size: 10px;
-    }
+    ul {
+      p {
+        width: 35px;
+        margin: 0px;
+        font-size: 10px;
+        display: inline-block;
+      }
+  
+      input {
+        height: 13px;
+        width: 90px;
+        padding: 0px;
+        margin: 0px;
+  
+        display: inline-block;
+        font-size: 10px;
+      }
+    };
   }
 </style>

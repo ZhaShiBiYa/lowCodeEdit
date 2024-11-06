@@ -63,4 +63,12 @@
     color: black;
     background-color: #fff;
   }
+
+  .tab {
+    display: none;
+  }
+
+  .more {
+    display: none;
+  }
 </style>

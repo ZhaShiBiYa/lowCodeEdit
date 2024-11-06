@@ -1,10 +1,13 @@
 <template>
-  <div class="event">
+  <div class="eventContent">
     <ul>
       <li v-for="event in Object.keys(eventObject)" class="event">
-        <input type="text" 
+        <p>
+          事件
+          <input type="text" 
                :value.lazy.trim="event"
                @change="eventChangeFn($event.target.value.trim())">
+        </p>
         <ul>
           <!-- 每个函数对应部分 -->
           <li v-for="fn in eventObject[event]" class="fn">
@@ -20,9 +23,12 @@
                      :value="fn.params"
                      @change="fnChangeFn(fn.name, $event.target.value.trim(), fn.fn, event)">
             </p>
-            <textarea name="" id="" 
+            <p>
+              函数内容
+              <textarea name="" id="" 
                       :value="fn.fn"
                       @change="fnChangeFn(fn.name, fn.params, $event.target.value.trim(), event)"/>
+            </p>
           </li>
           <div class="addFn">新增函数</div>
         </ul>
@@ -60,6 +66,11 @@
       curEvent[eventKey].forEach((fn) => {
         // 获取到每一个fn
         function composeFn(fn) {
+          if (!fn) return {
+            name: '', 
+            params: '', 
+            fn: null
+          }
           const params = fn.toString().match(/function\s+\w+\s*\(([^)]*)\)/)[1];
           const funcName = fn.name;
           const funcBody = fn.toString().match(/\{([\s\S]*)\}/)[1].trim();
@@ -85,5 +96,44 @@
 </script>
 
 <style lang="less" scoped>
+  .eventContent {
+    background-color: #fff;
+    overflow: auto;
+    width: 100%;
+    height: 50%;
+    .addEvent {
+      font-size: 12px;
+      height: 15px;
+      border: 1px solid palegreen;
+    }
+    
+    .event {
+      p {
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+        input {
+          font-size: 12px;
+        }
+      }
 
+      .fn {
+        p {
+          font-size: 12px;
+          input {
+            font-size: 12px;
+          }
+        }
+        textarea {
+          font-size: 12px;
+        }
+      }
+
+      .addFn {
+        font-size: 12px;
+        height: 15px;
+        border: 1px solid paleturquoise;
+      }
+    }
+  }  
 </style>

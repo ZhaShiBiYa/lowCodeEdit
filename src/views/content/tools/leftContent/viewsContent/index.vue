@@ -1,6 +1,6 @@
 <template>
   <div class="viewsContent">
-    
+    viewContent
   </div>
 </template>
 
@@ -13,5 +13,6 @@
     width: 150px;
     height: 100%;
     font-family: Arial, sans-serif;
+    background-color: #fff;
   }
 </style>
