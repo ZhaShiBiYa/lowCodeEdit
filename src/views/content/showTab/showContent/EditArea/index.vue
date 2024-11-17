@@ -47,7 +47,6 @@
       // 创建一个子应用并将 render 函数作为根组件
       const app = createApp({
         render: renderFunction, 
-
       });
       // 将子应用挂载到指定的 DOM 元素
       app.mount(editAreaRef.value);

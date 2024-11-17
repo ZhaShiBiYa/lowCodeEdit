@@ -11,7 +11,7 @@
                @change="cssChangeFn(Object.keys(item)[0], $event.target.value.trim())"
                :value.lazy.trim="Object.values(item)[0]">
       </li>
-      <div class="addStyle">新增样式</div>
+      <div class="addStyle" @click="addStyle">新增样式</div>
     </ul>
   </div>
 </template>
@@ -44,6 +44,10 @@
   // 改变css方法
   function cssChangeFn(name, value, id=clickId.value) {
     componentsStore.cssChangeComponent(id, name, value)
+  }
+
+  function addStyle() {
+    componentsStore.getComponentById(clickStore.clickId).props.css[""] = ""
   }
 
 </script>

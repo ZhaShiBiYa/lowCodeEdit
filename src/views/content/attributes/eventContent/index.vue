@@ -63,6 +63,8 @@
     Object.keys(curEvent).forEach((eventKey) => {
       // 这里获取到每一种事件
       let eventList = []
+      console.log("111:", curEvent[eventKey]);
+      
       curEvent[eventKey].forEach((fn) => {
         // 获取到每一个fn
         function composeFn(fn) {

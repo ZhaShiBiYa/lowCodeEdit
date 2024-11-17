@@ -5,6 +5,7 @@ export const useMaterialsStores = defineStore("materials", {
 
   state: () => ({
     componentConfig: [
+      // container
       {
         name: "container",
         type: "div",
@@ -21,15 +22,14 @@ export const useMaterialsStores = defineStore("materials", {
         id: null, 
         parentId: null
       },
+      // btn
       { 
         name: "button",
         type: "button", 
-        on: {
-          click: [
-            function yell() {},
-          ],
-        },
         props: {
+          onClick: function yell(){
+            console.log("btn yell");
+          },
           css: {
             backgroundColor: "white", 
             border: "1px solid black", 
@@ -43,6 +43,7 @@ export const useMaterialsStores = defineStore("materials", {
         id: null, 
         parentId: null
       }, 
+      // input
       {
         name: "input", 
         type: "input", 
@@ -56,13 +57,17 @@ export const useMaterialsStores = defineStore("materials", {
         id: null, 
         parentId: null    
       },
+      // radio
       {
         name: "radio", 
-        type: "radio", 
+        type: "input", 
         props: {
+          type: "radio",
+          text: "111",
           css: {
             width: "100px", 
-            height: "20px"
+            height: "20px",
+            backgroundColor: "gray"
           },
         },
         children: [], 
